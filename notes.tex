@@ -1,0 +1,99 @@
+\documentclass[11pt]{article}
+\begin{document}
+
+\section{Intro}
+    Moore's Law
+    Bell's Law: Something New every decade. A new class of thing every 10 years
+
+    Sense. Compute. Store. Communicate. However... There's limited energy!
+
+    Monitoring...
+    \begin{itemize}
+        \item Space: Agriculture, volcanoes, etc
+        \item Things: Habitat, animals, people (body networks, dexternet), structures
+    \end{itemize}
+
+    Tmote Sky: The primary use of energy is for Tx/Rx
+
+    Sensor Categories:
+    \begin{itemize}
+        \item Chemical \
+            Particulate \
+            PH \
+            Molarity \
+            Redox Potential
+        \item Environmental \
+            Barometer \
+            Thermometer
+        \item Mechanical \
+            Accel \
+            Gyro \
+            Flow \
+            Seizmic
+        \item EM \
+            Photovoltaic
+            RF \
+            hall effect (magnetic field)
+    \end{itemize}
+
+    Application Categories:
+    \begin{itemize}
+        \item Structural Health Monitoring \
+            Earth Dams \
+            Bridges, pipes, buildings
+        \item Positional \
+            Alarm \
+            Cellular \
+            GPS \
+            New: traffic flow control
+        \item Robotics \
+            Modular swarms \
+            Control Systems \
+            Robot flow control
+        \item Environmental Control + Monitoring \
+            Weather prediction \
+            Climate / Weather prediction and modelling \
+            Polluction \
+            Wildfire prevention
+        \item Industrial + Manufacturing \
+            Assembly Lines and control \
+            Automated visual inspection \
+            Inventory management
+        \item Scientific Phenomenon
+        \item social improvements \
+            Crowdsourced weather \
+            P2P cell communication/relay \
+            Ala Carte Garbage
+    \end{itemize}
+
+    Arduino Fio
+    \begin{itemize}
+        \item MiniUSB ONLY charges
+        \item Digital IO
+        \item Analog Input only
+        \item 2 sets of GND + 3.3v
+        \item AREF is the reference for Analog to Digital conversion (AtoD)
+        \item CTS: Clear to Send pin
+        \item DTR: Sleep pin. Note: needs to be ready to sleep
+
+        \item When programming XBee, you can only program one at a time. Use the programming radio (USB dongle) to program over XBee 802.15.4 Series 1
+        \item Default transparent mode. Serial line replacement. Send/Receive ASCII at application level. Don't need to mess with packetization (header, packet, checksum)
+        \item Limited addressing: unicast OR broadcast
+        \item Advanced features: Sleeping radio, API for messaging, node discovery and coordination, collision avoidance options, RSSI, ACKs, dropped packets, etc...
+
+        \item Arduino IDE
+        \item Implement void setup() and void loop()
+        \item Serial.begin(57600); \& Serial.println(cstr); delay(ms);
+        \item pinMode(13, OUTPUT | INPUT); \& digitalWrite(13, HIGH | LOW); 13 = pin number
+        \item int x = digitalRead(13);
+    \end{itemize}
+
+    Computer Networks Introduction
+    \begin{itemize}
+        \item Tiered data transfer setup
+        \item TCP
+        \item OSI Model
+        \item RFCs
+    \end{itemize}
+
+\end{document}
