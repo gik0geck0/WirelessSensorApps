@@ -1,0 +1,3 @@
+Welcome to the ASCII-Mote system. Give me a letter, and ill tell you the ASCII value. Type 'quit' to stop.
+117
+105
