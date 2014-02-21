@@ -1,10 +1,10 @@
 #include <MsTimer2.h>
 
-const int datasize = 500;
-int state = 0x01;
+const int DATASIZE = 500;
+char state = 'N';
 int n;
-int* data;
-unsigned long* time;
+int data[DATASIZE];
+unsigned long time[DATASIZE];
 char moteid = 'A';
 
 void sense();
@@ -12,11 +12,8 @@ void transmit();
 
 void setup()
 {
-	data = (int*) malloc(datasize*sizeof(int));
-	time = (unsigned long*) malloc(datasize*sizeof(unsigned long));
 	Serial.begin(57600);
 	Serial.setTimeout(10);
-	MsTimer2::set(100, sense);
 }
 
 void sense() {
@@ -24,8 +21,8 @@ void sense() {
 	// Serial.print(moteid);
 	// Serial.print(n);
 	// Serial.print('/');
-	// Serial.print(datasize);
-	if (n < datasize && state == 0x02) {
+	// Serial.print(DATASIZE);
+	if (n < DATASIZE && state == 'G') {
 
 		// Read sensor value
 		data[n] = analogRead(A0);
@@ -38,40 +35,40 @@ void sense() {
 		
 		++n;
 	}
-	if	(n >= datasize) {
+	if	(n >= DATASIZE) {
 		// Serial.println('D');
-		state = 0x03;
+		state = 'T';
 	}
 }
 
 void transmit() {
 	// B gets to wait till A finishes
 	if (moteid == 'B') {
-		delay(1*datasize / 2);
+		delay(1*DATASIZE / 2);
 	}
 	
-	for (int i=0; i < datasize; i++) {
+	for (int i=0; i < DATASIZE; i++) {
 		// Send it
 		Serial.print(moteid);
 		Serial.print(time[i]);
 		Serial.print("\t");
 		Serial.println(data[i]);
 	}
-	state = 0x01;
+	state = 'N';
 }
 
-void loop()
-{
+void loop() {
 	char inchar = Serial.read();
 	
-	if (inchar == 'S' && state != 0x02 && state != 0x03) {
-		state = 0x02;
+	if (inchar == 'S' && state == 'N') {
+		state = 'G';
 		n = 0;
 		Serial.print("Start ");
 		Serial.println(moteid);
+		MsTimer2::set(100, sense);
 		MsTimer2::start();
 	}
-	if (state == 0x03) {
+	if (state == 'T') {
 		Serial.print("Stop ");
 		Serial.println(moteid);
 		MsTimer2::stop();
